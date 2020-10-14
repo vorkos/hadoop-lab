@@ -1,0 +1,5 @@
+# Apply common configuration to all hosts
+- hosts: all
+
+  roles:
+  - hadoop
