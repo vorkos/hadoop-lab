@@ -1,0 +1,14 @@
+#cloud-config
+users:
+  - name: ansible
+    groups: users, admin
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    lock_passwd: true
+    ssh_authorized_keys: 
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCb6Q4+2gb+33Nwo8qocZmotUKxESRXC5C3bAYeyhoHUvA/ibd3EKha1d8RaC+GsxaqJaxy9d741wYQle1sZIVO1cQVucpsnCGWa3NJqbcyYuppUI3Kx6hYM/Sd8YAERqBVV9UgZmb5co0Kf3XnVROUGPatCqJd/bPgA5LfbUHVbuzDqTnZSKr4ytU15b2NSvmXScwPGWYF2ELJesP370239lbvLFxizh3hBWDu7ahYeaWVqs6g6JXEa/KLaSHKICyWjCFlY4bzxMBEeq+SQSL1QcXq9VMmI6oYabYeNiEWXrSftEC3Jj1oyG6OKw9+ekwHDnyTEKH+p5DgBe6kCeex vorko@DESKTOP-2MK14DM"
+runcmd:
+  - echo "test"
+package_update: true
+packages:
+  - python3
+final_message: "The system is finally up, after $UPTIME seconds"
