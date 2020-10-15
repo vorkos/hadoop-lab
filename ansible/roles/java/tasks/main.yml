@@ -1,0 +1,15 @@
+---
+- name: Install JRE OpenJDK
+  become: yes
+  apt: 
+    name: 
+      - default-jre
+      - default-jdk
+    install_recommends: no
+    state: latest
+
+- name: Copy Java Home Script
+  template: src=java_home.sh dest=/etc/profile.d
+
+- name: Set Java Home Script
+  shell: source /etc/profile.d/java_home.sh
