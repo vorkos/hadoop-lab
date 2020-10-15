@@ -26,7 +26,7 @@
     generate_ssh_key: yes
     ssh_key_bits: 2048
     ssh_key_file: .ssh/id_rsa
-  when: "key_exist.stdout == '0' and generate_key"    
+  when: "key_exist.stdout == '0' and role == 'master'"    
 
 - name: Get Lastest Public From Hadoop Master
   fetch: 

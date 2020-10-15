@@ -12,4 +12,5 @@
   template: src=java_home.sh dest=/etc/profile.d
 
 - name: Set Java Home Script
-  shell: source /etc/profile.d/java_home.sh
+  shell: . /etc/profile.d/java_home.sh
+  

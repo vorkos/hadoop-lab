@@ -1,6 +1,25 @@
 ---
-- name: Copy Hadoop
-  copy: src={{ download_path }}/hadoop-{{hadoop_version}}.tar.gz dest=/tmp owner={{ user }} mode=755
+#- name: Copy Hadoop
+#  copy: src={{ download_path }}/hadoop-{{hadoop_version}}.tar.gz dest=/tmp owner={{ user }} mode=755
+#https://downloads.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz
+- name: Download Hadoop
+  get_url: 
+    url: "{{ download_path }}/hadoop-{{hadoop_version}}/hadoop-{{hadoop_version}}.tar.gz"
+    dest: /tmp/hadoop-{{hadoop_version}}.tar.gz 
+    force: no
   
-- name: Unzip Hadoop
-  shell: "tar zxf /tmp/hadoop-{{hadoop_version}}.tar.gz -C {{ hadoop_path }}"
+- name: Untar Hadoop
+  unarchive: 
+    src: /tmp/hadoop-{{hadoop_version}}.tar.gz 
+    dest: "{{ hadoop_path }}"
+    remote_src: yes
+    creates: "{{ hadoop_path }}/hadoop-{{hadoop_version}}"
+
+- name: make synlink to opt
+  file: 
+    src: "{{ hadoop_path }}" 
+    dest: /opt/hadoop 
+    state: link
+
+#- name: Unzip Hadoop
+#  shell: "tar zxf /tmp/hadoop-{{hadoop_version}}.tar.gz -C {{ hadoop_path }}"

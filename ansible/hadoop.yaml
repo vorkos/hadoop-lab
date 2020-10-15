@@ -5,15 +5,13 @@
    - vars/common.yml
   vars:
     add_user: true
-    generate_key: true
     open_firewall: true
     disable_firewall: false
     install_hadoop: true
     config_hadoop: true
-    #generate_key: false #worker
     #open_firewall: false #worker
     #disable_firewall: true #worker
   roles:
     - common
     - java
-    #- hadoop
+    - hadoop
