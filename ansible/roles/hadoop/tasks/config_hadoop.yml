@@ -15,7 +15,7 @@
   template:
     src: workers
     dest: "{{ hadoop_config_path }}"
-    mode: 644
+    mode: 0644
     owner: "{{ user }}"
     group: "{{ group }}"
 
@@ -31,3 +31,5 @@
   notify:
     - restart hadoop-dfs
     - restart hadoop-datanode
+    - refreshDFSNodes
+    - refreshMRNodes

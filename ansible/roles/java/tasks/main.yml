@@ -17,7 +17,7 @@
     state: present
 
 - name: Copy Java Home Script
-  template: 
+  template:
     src: java_home.sh
     dest: /etc/profile.d
 
