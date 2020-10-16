@@ -5,6 +5,7 @@ group: "hadoop"
 #### var_basic.yml
 # java version
 jvm_home: "/usr/lib/jvm"
+jvm_version: 8
 
 # hadoop basic vars
 download_path: "https://downloads.apache.org/hadoop/common"
