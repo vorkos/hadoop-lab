@@ -18,4 +18,4 @@
   template: src=hadoop_env.sh dest=/etc/profile.d/ mode=755
 
 - name: Set Hadoop Env
-  shell: source /etc/profile.d/hadoop_env.sh
+  shell: . /etc/profile.d/hadoop_env.sh

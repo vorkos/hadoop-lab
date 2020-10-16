@@ -4,5 +4,11 @@ melodious-wolverine  ansible_user=ansible  ansible_host=172.17.233.39        rol
 vivid-codling        ansible_user=ansible  ansible_host=172.17.232.102       role=worker
 cherished-capybara   ansible_user=ansible  ansible_host=172.17.226.125       role=worker
 [hadoop:vars]
-master_hostname=uptown-frog          
+master_hostname=uptown-frog
 master_ip=172.17.238.227
+[masters]
+uptown-frog          ansible_user=ansible  ansible_host=172.17.238.227
+[workers]
+melodious-wolverine  ansible_user=ansible  ansible_host=172.17.233.39
+vivid-codling        ansible_user=ansible  ansible_host=172.17.232.102
+cherished-capybara   ansible_user=ansible  ansible_host=172.17.226.125
