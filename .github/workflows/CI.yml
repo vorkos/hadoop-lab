@@ -24,4 +24,7 @@ jobs:
 
       # Lint ansible
       - name: ansible-lint
-        uses: ansible/ansible-lint-action@v4.1.0.post0
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: "ansible/hadoop.yaml"
+          args: ""
