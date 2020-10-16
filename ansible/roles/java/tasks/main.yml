@@ -1,8 +1,8 @@
 ---
 - name: Install JRE OpenJDK
   become: yes
-  apt: 
-    name: 
+  apt:
+    name:
       - default-jre
       - default-jdk
     install_recommends: no
@@ -13,4 +13,7 @@
 
 - name: Set Java Home Script
   shell: . /etc/profile.d/java_home.sh
-  
+  args:
+    warn: no
+    executable: /bin/bash
+  changed_when: false

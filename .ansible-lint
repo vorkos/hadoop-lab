@@ -1,0 +1,7 @@
+# .ansible-lint                                                          
+skip_list:  # or 'skip_list' to silence them completely                                            
+  - '207'  # Nested jinja pattern                                                              
+  - '301'  # Commands should not change things if nothing needs doing     
+  - '305'  # Use shell only when shell functionality is required          
+  - '403'  # Package installs should not use latest                       
+  - experimental  # all rules tagged as experimental  

@@ -1,6 +1,6 @@
 ---
 - name: Create Hadoop Path
-  file: 
+  file:
     path: "{{ item }}"
     owner: "{{ user }}"
     group: "{{ group }}"

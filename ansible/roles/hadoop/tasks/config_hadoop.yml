@@ -19,3 +19,7 @@
 
 - name: Set Hadoop Env
   shell: . /etc/profile.d/hadoop_env.sh
+  args:
+    warn: no
+    executable: /bin/bash
+  changed_when: false
