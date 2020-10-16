@@ -12,7 +12,12 @@
   template: src=yarn-site.xml dest={{ hadoop_config_path }} mode=644 owner={{ user }} group = {{ group }}
 
 - name: Copy Hadoop workers
-  template: src=workers dest={{ hadoop_config_path }} mode=644 owner={{ user }} group = {{ group }}
+  template:
+    src: workers
+    dest: "{{ hadoop_config_path }}"
+    mode: 0644
+    owner: "{{ user }}"
+    group: "{{ group }}"
 
 - name: Copy Hadoop Env Script
   template: src=hadoop_env.sh dest=/etc/profile.d/ mode=755
@@ -23,3 +28,8 @@
     warn: no
     executable: /bin/bash
   changed_when: false
+  notify:
+    - restart hadoop-dfs
+    - restart hadoop-datanode
+    - refreshDFSNodes
+    - refreshMRNodes

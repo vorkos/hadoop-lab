@@ -1,2 +1,47 @@
 ---
 # handlers file for hadoop
+- name: restart hadoop-dfs
+  action: |
+    shell {{ hadoop_home }}/bin/hadoop-daemon.sh --config {{ hadoop_home }}/conf stop namenode;
+     {{ hadoop_home }}/bin/hadoop-daemon.sh --config {{ hadoop_home }}/conf start namenode
+  when: role == 'master'
+  async: 30
+  poll: 5
+
+- name: restart hadoop-mapred
+  action: |
+    shell {{ hadoop_home }}/bin/hadoop-daemon.sh --config {{ hadoop_home }}/conf stop jobtracker;
+      {{ hadoop_home }}/bin/hadoop-daemon.sh --config {{ hadoop_home }}/conf start jobtracker
+  when: role == 'master'
+  async: 30
+  poll: 5
+
+- name: restart hadoop-datanode
+  action: |
+    shell {{ hadoop_home }}/bin/hadoop-daemon.sh --config {{ hadoop_home }}/conf stop datanode;
+     {{ hadoop_home }}/bin/hadoop-daemon.sh --config {{ hadoop_home }}/conf start datanode
+  when: role == 'worker'
+  async: 30
+  poll: 5
+
+- name: restart hadoop-tasktracker
+  action: |
+    shell {{ hadoop_home }}/bin/hadoop-daemon.sh --config {{ hadoop_home }}/conf stop tasktracker;
+    {{ hadoop_home }}/bin/hadoop-daemon.sh --config {{ hadoop_home }}/conf start tasktracker
+  when: role == 'worker'
+  async: 30
+  poll: 5
+
+- name: refreshDFSNodes
+  command: "{{ hadoop_home }}/bin/hadoop dfsadmin -refreshNodes"
+  when: role == 'master'
+  ignore_errors: yes
+  async: 30
+  poll: 5
+
+- name: refreshMRNodes
+  command: "{{ hadoop_home }}/bin/hadoop mradmin -refreshNodes"
+  when: role == 'master'
+  ignore_errors: yes
+  async: 30
+  poll: 5

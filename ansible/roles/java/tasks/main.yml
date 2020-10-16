@@ -1,15 +1,25 @@
 ---
-- name: Install JRE OpenJDK
+- name: Remove latest JRE OpenJDK
   become: yes
   apt:
     name:
       - default-jre
       - default-jdk
+    state: absent
+
+- name: Install JRE OpenJDK
+  become: yes
+  apt:
+    name:
+      - openjdk-{{ jvm_version }}-jre
+      - openjdk-{{ jvm_version }}-jdk
     install_recommends: no
-    state: latest
+    state: present
 
 - name: Copy Java Home Script
-  template: src=java_home.sh dest=/etc/profile.d
+  template:
+    src: java_home.sh
+    dest: /etc/profile.d
 
 - name: Set Java Home Script
   shell: . /etc/profile.d/java_home.sh
